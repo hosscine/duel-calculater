@@ -36,7 +36,7 @@ let lifeCalculater = {
       if (this.life >= 6000) return "#0b9a1d"
       else if (this.life >= 4000) return "#add611"
       else if (this.life >= 2000) return "#e2de21"
-      else if (this.life >= 0) return "#f17012"
+      else if (this.life > 0) return "#f17012"
       else return "#ff1b1b"
     }
   },
@@ -54,7 +54,7 @@ let lifeCalculater = {
       }
 
       let damage = this.parseDamage(this.current)
-      this.damageHistory.push({
+      this.damageHistory.unshift({
         index: this.damageHistory.length,
         value: damage
       })
@@ -70,7 +70,7 @@ let lifeCalculater = {
 
     revertDamage: function() {
       if (this.damageHistory.length === 0) return
-      this.life += this.damageHistory.pop().value
+      this.life += this.damageHistory.shift().value
     }
   }
 }
